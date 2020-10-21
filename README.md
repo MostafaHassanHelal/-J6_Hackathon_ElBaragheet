@@ -2,11 +2,11 @@
 
 
 # -Team Members
-.Team Leader : Muhannad Ibrahim Ali
+* Team Leader : Muhannad Ibrahim Ali
 
-.Team Member : Mostafa Hassan Helal
+* Team Member : Mostafa Hassan Helal
 
-.Team Member : Omar Nader
+* Team Member : Omar Nader
 
 
 # -Problem Statment
