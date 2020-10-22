@@ -26,7 +26,10 @@ By taking a photo of faces of people (behind the door) and trying to recognize t
 
 # -Steps to run the software
   1- Install(face_recognition, tkinter, numpy, PIL, cv2, gtts, mysql.connector, os, sys, BytesIO, datetime) libraries 
+  
   2- Open MYSQL server (EX. from XAMPP or Wamp) and Create local database('People') 
+  
   3- Open CMD or powershell in the project directory and RUN the command (python project_6.py)
+  
   4- From GUI enjoy with the program :"D
 
