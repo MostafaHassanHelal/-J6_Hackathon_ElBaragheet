@@ -203,6 +203,7 @@ elif choice == 2: ######################### OPEN CAMERA ########################
     cv2.destroyAllWindows()
 
     # Detecting the faces
+    #image = face_recognition.load_image_file("Media/persons"+date_and_time+".jpg")  # Load the image
     image = face_recognition.load_image_file("Media/persons"+date_and_time+".jpg")  # Load the image
     face_locations = face_recognition.face_locations(image)  # Detect the face locations
 
@@ -225,6 +226,8 @@ elif choice == 2: ######################### OPEN CAMERA ########################
             face_locations[i][2]
         ))
 
+        #img_cropped.show()
+
         stream = BytesIO()
         img_cropped.save(stream, format="JPEG")
         BinaryData = stream.getvalue()
@@ -243,6 +246,7 @@ elif choice == 2: ######################### OPEN CAMERA ########################
         unknown_image = face_recognition.load_image_file(file_like1)
         #img1.show()
         found = False
+        #no_face = False
         X = countKnown()
         SQLStatment6 = "SELECT* FROM Known"
         MyCursor2.execute(SQLStatment6)
@@ -257,13 +261,14 @@ elif choice == 2: ######################### OPEN CAMERA ########################
             try:
                 known_encoding = face_recognition.face_encodings(known_image)[0]
                 unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+                results = face_recognition.compare_faces([known_encoding], unknown_encoding,tolerance=0.55)
+                if(results[0]):
+                    found = True
+                    persons.append(name)
+                    break
             except IndexError as e:
+                #no_face = True
                 print(e)
-                break
-            results = face_recognition.compare_faces([known_encoding], unknown_encoding,tolerance=0.55)
-            if(results[0]):
-                found = True
-                persons.append(name)
                 break
 
         if(found == False):
@@ -302,10 +307,9 @@ elif choice == 2: ######################### OPEN CAMERA ########################
     MyCursor1.execute(SQLStatment7)
     j = 0
     for k in un_persons:
-        #unknown_image = face_recognition.load_image_file("unknown/face"+str(u)+".jpg")
         record1 = MyCursor1.fetchone()
-        if(k != record1[0] - 1):
-            continue
+        while (k != record1[0] - 1):
+            record1 = MyCursor1.fetchone()
         blob_image1 = record1[1]
         file_like1 = BytesIO(blob_image1)
         img1 = Image.open(file_like1)
