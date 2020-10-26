@@ -31,5 +31,7 @@ By taking a photo of faces of people (behind the door) and trying to recognize t
   
   3- Open CMD or powershell in the project directory and RUN the command (python project_6.py)
   
-  4- From GUI enjoy with the program :"D
+  4- From GUI, if you select "open camera" you can take a shot using "ESC" button
+  
+  5- For other options just follow the GUI 
 
